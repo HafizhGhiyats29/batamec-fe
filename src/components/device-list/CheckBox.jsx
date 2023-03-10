@@ -4,9 +4,9 @@ const CheckBox = React.forwardRef(({ indeterminate, ...rest }, ref) => {
   const resolvedRef = ref || defaultRef;
 
   return (
-    <span className="flex justify-center items-center">
-      <input type="checkbox" ref={resolvedRef} {...rest} className="border-[#2D5BFF] border-[3px] hover:ring rounded-sm" id="check" />
-    </span>
+    <div className="flex justify-center items-center">
+      <input type="checkbox" ref={resolvedRef} {...rest} className="w-[18px] h-[18px] border-2 border-[#2D5BFF]" id="check" />
+    </div>
   );
 });
 export default CheckBox;

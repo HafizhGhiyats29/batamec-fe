@@ -2,11 +2,11 @@ import React, { useMemo } from "react";
 import { useTable, usePagination, useRowSelect } from "react-table";
 import { useSelector, useDispatch } from "react-redux";
 import { useSearchParams } from "react-router-dom";
-import CheckBox from "./CheckBox";
 import { openModal } from "../../redux";
+import CheckBox from "./CheckBox";
 
 function Table({ tipe, onTipeChange }) {
-  const [, setSearchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
   const column = [
     {
       Header: "Device Name",
@@ -53,7 +53,7 @@ function Table({ tipe, onTipeChange }) {
       ];
     });
   });
-  const { getTableBodyProps, getTableProps, headerGroups, canNextPage, canPreviousPage, page, pageOptions, nextPage, previousPage, prepareRow, state, selectedFlatRows } = tableInstances;
+  const { getTableBodyProps, getTableProps, headerGroups, canNextPage, canPreviousPage, page, pageOptions, nextPage, previousPage, prepareRow, state, selectedFlatRows, pageCount } = tableInstances;
   const { pageIndex, pageSize } = state;
   const lastPage = pageOptions.slice(-1)[0];
 
@@ -63,8 +63,8 @@ function Table({ tipe, onTipeChange }) {
     setSearchParams({ id });
   }
   return (
-    <div className="p-4 text-center">
-      <table {...getTableProps()} className="w-full text-center">
+    <div className="px-4 text-center">
+      <table {...getTableProps()} className="w-full text-center text-sm">
         <thead className="text-white bg-[#43B7F9]">
           {headerGroups.map((headerGroup) => (
             <tr {...headerGroup.getHeaderProps}>
@@ -96,7 +96,7 @@ function Table({ tipe, onTipeChange }) {
                     );
                   } else {
                     return (
-                      <td {...cell.getCellProps()} className="p-1 border">
+                      <td {...cell.getCellProps()} className="border p-[3px]">
                         {cell.render("Cell")}
                       </td>
                     );
@@ -107,7 +107,7 @@ function Table({ tipe, onTipeChange }) {
           })}
         </tbody>
       </table>
-      <div className="flex justify-center items-center mt-7">
+      <div className="flex justify-center items-center mt-4">
         <button className="mr-3 text-2xl" disabled={!canPreviousPage} onClick={() => previousPage()}>
           &lt;
         </button>
